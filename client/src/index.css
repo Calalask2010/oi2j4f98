@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 20%);
+  --muted: hsl(210, 40%, 95%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 20%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 20%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(215, 100%, 40%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 95%);
+  --secondary-foreground: hsl(222, 84%, 5%);
+  --accent: hsl(210, 40%, 95%);
+  --accent-foreground: hsl(222, 84%, 5%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(60, 9%, 98%);
+  --ring: hsl(215, 100%, 40%);
+  --radius: 0.5rem;
+  
+  /* Custom HireHand colors */
+  --primary-blue: hsl(207, 90%, 54%);
+  --primary-green: hsl(122, 39%, 49%);
+  --primary-yellow: hsl(45, 100%, 51%);
+  --light-gray: hsl(0, 0%, 95%);
+  --dark-gray: hsl(0, 0%, 20%);
+  --medium-gray: hsl(0, 0%, 40%);
+}
+
+.dark {
+  --background: hsl(222, 84%, 5%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 5%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 5%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32%, 17%);
+  --input: hsl(217, 32%, 17%);
+  --primary: hsl(215, 100%, 40%);
+  --primary-foreground: hsl(222, 84%, 5%);
+  --secondary: hsl(217, 32%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 32%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(215, 100%, 40%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Roboto', 'Arial', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Roboto', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-primary-blue {
+    color: var(--primary-blue);
+  }
+  
+  .bg-primary-blue {
+    background-color: var(--primary-blue);
+  }
+  
+  .bg-light-gray {
+    background-color: var(--light-gray);
+  }
+  
+  .text-dark-gray {
+    color: var(--dark-gray);
+  }
+  
+  .text-medium-gray {
+    color: var(--medium-gray);
+  }
+
+  .bg-primary-green {
+    background-color: var(--primary-green);
+  }
+
+  .text-primary-green {
+    color: var(--primary-green);
+  }
+
+  .bg-primary-yellow {
+    background-color: var(--primary-yellow);
+  }
+
+  .text-primary-yellow {
+    color: var(--primary-yellow);
+  }
+
+  /* Better text rendering for Cyrillic */
+  .cyrillic-text {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% { 
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% { 
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% { 
+      transform: scale(0.9);
+    }
+    100% { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-left {
+    from {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-right {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scale-up {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-15px) rotate(1deg);
+    }
+    66% {
+      transform: translateY(-5px) rotate(-1deg);
+    }
+  }
+
+  @keyframes morphing {
+    0%, 100% {
+      border-radius: 50% 50% 50% 50%;
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      border-radius: 60% 40% 30% 70%;
+      transform: rotate(90deg) scale(1.1);
+    }
+    50% {
+      border-radius: 30% 60% 70% 40%;
+      transform: rotate(180deg) scale(0.9);
+    }
+    75% {
+      border-radius: 40% 30% 60% 50%;
+      transform: rotate(270deg) scale(1.05);
+    }
+  }
+
+  @keyframes particles {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(50px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+    }
+  }
+
+  /* Additional animation classes */
+  .animate-slide-down {
+    animation: slide-down 0.8s ease-out;
+  }
+
+  .animate-slide-left {
+    animation: slide-left 0.8s ease-out;
+  }
+
+  .animate-slide-right {
+    animation: slide-right 0.8s ease-out;
+  }
+
+  .animate-scale-up {
+    animation: scale-up 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-morphing {
+    animation: morphing 8s ease-in-out infinite;
+  }
+
+  .animate-particles {
+    animation: particles 10s linear infinite;
+  }
+
+  /* Enhanced floating animation with rotation */
+  .animate-float-enhanced {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Subtle background pulse */
+  .animate-bg-pulse {
+    animation: bg-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes bg-pulse {
+    0%, 100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
