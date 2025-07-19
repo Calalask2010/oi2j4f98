@@ -1,0 +1,1 @@
+# Пакет Python сервера для HireHand
