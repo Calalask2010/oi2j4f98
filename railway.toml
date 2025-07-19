@@ -4,13 +4,8 @@ builder = "nixpacks"
 [deploy]
 startCommand = "npm run start"
 healthcheckPath = "/api/health"
-healthcheckTimeout = 300
+healthcheckTimeout = 100
 restartPolicyType = "on_failure"
 
 [environments.production.variables]
 NODE_ENV = "production"
-USE_NODE_BACKEND = "true"
-
-[environments.python.variables]
-NODE_ENV = "production"
-USE_NODE_BACKEND = "false"
