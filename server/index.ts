@@ -95,20 +95,36 @@ app.use((req, res, next) => {
   }
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
+  // Railway provides PORT automatically, default to 5000 for local development
   const port = parseInt(process.env.PORT || '5000', 10);
-  const host = process.env.HOST || "0.0.0.0";
-  
-  // Use localhost for Windows compatibility if specified
-  const actualHost = process.platform === 'win32' && host === '0.0.0.0' ? 'localhost' : host;
+  const host = "0.0.0.0"; // Railway requires 0.0.0.0
   
   server.listen({
     port,
-    host: actualHost,
+    host,
     reusePort: true,
   }, () => {
-    log(`serving on port ${port}`);
+    console.log(`🚀 Server started successfully`);
+    console.log(`📍 Listening on ${host}:${port}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`❤️ Health check: http://${host === '0.0.0.0' ? 'localhost' : host}:${port}/api/health`);
+    log(`serving on port ${port} on host ${host}`);
+  });
+
+  // Handle server errors
+  server.on('error', (error: any) => {
+    console.error('❌ Server error:', error);
+    if (error.code === 'EADDRINUSE') {
+      console.error(`🔴 Port ${port} is already in use`);
+    }
+  });
+
+  // Graceful shutdown
+  process.on('SIGTERM', () => {
+    console.log('👋 Received SIGTERM, shutting down gracefully');
+    server.close(() => {
+      console.log('✅ Server closed');
+      process.exit(0);
+    });
   });
 })();
