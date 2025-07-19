@@ -1,0 +1,12 @@
+# Railway configuration without custom build script
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "node start-simple.js"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 60
+restartPolicyType = "on_failure"
+
+[environments.production.variables]
+NODE_ENV = "production"
